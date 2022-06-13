@@ -2,6 +2,7 @@
   "dependencies": {
     "com.dbrizov.naughtyattributes": "2.1.4",
     "com.facticus.utils": "0.8.4",
+    "com.github.unity": "https://github.com/peeweek/com.github.unity.git",
     "com.lms.version_mand": "https://github.com/mnicolas94/LMS.Version.git?path=/Assets/Version",
     "com.mackysoft.serializereference-extensions": "1.1.6",
     "com.unity.2d.animation": "6.0.3",

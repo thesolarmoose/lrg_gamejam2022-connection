@@ -8,6 +8,7 @@ namespace Character
     public class CharacterInputController : MonoBehaviour
     {
         [SerializeField] private CharacterMovement _character;
+        [SerializeField] private ShootSkill _shootSkill;
         
         [SerializeField] private Camera _camera;
         [SerializeField] private float _gamepadCursorDist;
@@ -16,6 +17,7 @@ namespace Character
         [SerializeField] private InputActionReference _moveAction;
         [SerializeField] private InputActionReference _lookAction;
         [SerializeField] private InputActionReference _pointAction;
+        [SerializeField] private InputActionReference _shootAction;
 
         private InputDevice _lastDevice;
         
@@ -24,7 +26,25 @@ namespace Character
             _moveAction.action.Enable();
             _pointAction.action.Enable();
             _lookAction.action.Enable();
+            _shootAction.action.Enable();
             InputUser.onChange += OnInputDeviceChanged;
+            _shootAction.action.performed += OnShoot;
+        }
+
+        private void OnEnable()
+        {
+            _moveAction.action?.Enable();
+            _pointAction.action?.Enable();
+            _lookAction.action?.Enable();
+            _shootAction.action?.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _moveAction.action?.Disable();
+            _pointAction.action?.Disable();
+            _lookAction.action?.Disable();
+            _shootAction.action?.Disable();
         }
 
         private void OnInputDeviceChanged(InputUser user, InputUserChange userChange, InputDevice device)
@@ -35,18 +55,9 @@ namespace Character
             }
         }
 
-        private void OnEnable()
+        private void OnShoot(InputAction.CallbackContext ctx)
         {
-            _moveAction.action?.Enable();
-            _pointAction.action?.Enable();
-            _lookAction.action?.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _moveAction.action?.Disable();
-            _pointAction.action?.Disable();
-            _lookAction.action?.Disable();
+            _shootSkill.Shoot();
         }
 
         private void Update()
