@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Hook.RetractionControllers;
 using UnityEngine;
 
 namespace Hook
@@ -9,7 +8,7 @@ namespace Hook
     public class RetractableHook : MonoBehaviour
     {
         [SerializeField] private Rope _rope;
-        [SerializeReference, SubclassSelector] private IRetractionController _retractionController;
+        [SerializeField] private RetractionController _retractionController;
         
         [SerializeField] private float _retractSpeed;
         [SerializeField] private float _tensionToJoin;
@@ -123,9 +122,9 @@ namespace Hook
 
         private void Connect(RopeTip ropeTip, Collider2D coll, Vector2 connectionPoint)
         {
-            var hooked = coll.GetComponent<IHookable>();
+            var hooked = coll.GetComponent<Hookable>();
             ropeTip.position = connectionPoint;
-            ropeTip.transform.SetParent(hooked.GetTransform(), true);
+            ropeTip.transform.SetParent(hooked.transform, true);
             _connectedTips.Add(new Connection(ropeTip, hooked));
         }
 

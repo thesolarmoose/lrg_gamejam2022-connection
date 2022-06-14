@@ -4,35 +4,17 @@ using UnityEngine.Events;
 
 namespace Hook
 {
-    public class Hookable : MonoBehaviour, IHookable
+    public class Hookable : MonoBehaviour
     {
         [SerializeField] private bool _isMovable;
+        [SerializeField] private Collider2D _collider;
         
-        public UnityEvent onConnected;
-        public UnityEvent onStartRetracting;
-        public UnityEvent<IHookable> onCollided;
-        
-        private Collider2D _collider;
+        [SerializeField] private UnityEvent onConnected;
+        [SerializeField] private UnityEvent onStartRetracting;
+        [SerializeField] private UnityEvent<Hookable> onCollided;
 
-        private void Start()
-        {
-            _collider = GetComponent<Collider2D>();
-        }
-
-        public bool IsMovable()
-        {
-            return _isMovable;
-        }
-
-        public Transform GetTransform()
-        {
-            return transform;
-        }
-
-        public Collider2D GetCollider()
-        {
-            return _collider;
-        }
+        public bool IsMovable => _isMovable;
+        public Collider2D Collider => _collider;
 
         public void OnConnected()
         {
@@ -44,7 +26,7 @@ namespace Hook
             onStartRetracting?.Invoke();
         }
 
-        public void OnCollided(IHookable other)
+        public void OnCollided(Hookable other)
         {
             onCollided?.Invoke(other);
         }

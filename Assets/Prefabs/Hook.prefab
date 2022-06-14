@@ -49,7 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rope: {fileID: 9202149046650302234}
   _retractionController:
-    id: 0
+    _retractionMaxSpeed: 7
+    _retractionInitialSpeed: 0
+    _retractionAcceleration: 0.3
+    _hookablesMask:
+      serializedVersion: 2
+      m_Bits: 64
   _retractSpeed: 1
   _tensionToJoin: 1.2
   _length: 5
@@ -60,17 +65,6 @@ MonoBehaviour:
   _mask:
     serializedVersion: 2
     m_Bits: 64
-  references:
-    version: 1
-    00000000:
-      type: {class: DefaultRetractionController, ns: Hook.RetractionControllers, asm: com.thesolarmoose.name}
-      data:
-        _retractionMaxSpeed: 7
-        _retractionInitialSpeed: 0.2
-        _retractionAcceleration: 0.5
-        _hookablesMask:
-          serializedVersion: 2
-          m_Bits: 64
 --- !u!114 &9202149046650302234
 MonoBehaviour:
   m_ObjectHideFlags: 0

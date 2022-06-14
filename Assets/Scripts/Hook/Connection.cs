@@ -5,19 +5,19 @@ namespace Hook
     public class Connection
     {
         private RopeTip _tip;
-        private IHookable _hooked;
+        private Hookable _hooked;
 
         public RopeTip Tip => _tip;
-        public IHookable Hooked => _hooked;
+        public Hookable Hooked => _hooked;
         
 
-        public Connection(RopeTip tip, IHookable hooked)
+        public Connection(RopeTip tip, Hookable hooked)
         {
             _tip = tip;
             _hooked = hooked;
         }
 
-        public void Deconstruct(out RopeTip tip, out IHookable hooked)
+        public void Deconstruct(out RopeTip tip, out Hookable hooked)
         {
             tip = _tip;
             hooked = _hooked;
