@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Hook.RetractionControllers;
 using UnityEngine;
 
 namespace Hook
@@ -8,27 +9,37 @@ namespace Hook
     public class RetractableHook : MonoBehaviour
     {
         [SerializeField] private Rope _rope;
+        [SerializeReference, SubclassSelector] private IRetractionController _retractionController;
+        
+        [SerializeField] private float _retractSpeed;
+        [SerializeField] private float _tensionToJoin;
         [SerializeField] private float _length;
         [SerializeField] private float _shootSpeed;
         [SerializeField] private float _drag;
         [SerializeField] private float _minShootLength;
-
         [SerializeField] private float _collisionRadius;
         [SerializeField] private LayerMask _mask;
-
+        
         private bool _firstShot;
         private bool _secondShot;
         
-        private Collider2D[] _collidersBuffer = new Collider2D[10];
-        private Dictionary<RopeTip, Collider2D> _connectedTips = new Dictionary<RopeTip,Collider2D>();
+        private RaycastHit2D[] _raycastsBuffer = new RaycastHit2D[5];
+        private List<Connection> _connectedTips = new List<Connection>();
         
         public bool IsStillConnected => !_secondShot;
+
+        public Rope Rope => _rope;
+
+        private bool BothTipsShot => _firstShot && _secondShot;
+        private bool BothTipsConnected => _connectedTips.Count == 2;
 
         public void Initialize(Vector2 position)
         {
             transform.position = position;
             _rope.StartPoint.position = position;
             _rope.EndPoint.position = position;
+            _rope.StartPoint.Weight = 1.0f;
+            _rope.EndPoint.Weight = 1.0f;
             _rope.Initialize(position);
             _rope.Length = _length;
         }
@@ -37,7 +48,6 @@ namespace Hook
         {
             if (!_firstShot)
             {
-                _rope.EndPoint.Weight = 1.0f;
                 _rope.EndPoint.SetParent(parent);
                 
                 Shoot(dir, _rope.StartPoint);
@@ -54,7 +64,6 @@ namespace Hook
 
         private void Shoot(Vector2 dir, RopeTip ropeTip)
         {
-            ropeTip.Weight = 1.0f;
             StartCoroutine(ShootTip(dir, ropeTip));
         }
 
@@ -65,26 +74,59 @@ namespace Hook
 
             bool targetReached = false;
             bool connected = false;
+            Vector2 connectionPoint = Vector2.zero;
             float lastTime = Time.time;
             while (!targetReached)
             {
                 float deltaTime = Time.time - lastTime;
-                var newPos = MoveRopeTip(ropeTip, normDir, _shootSpeed, deltaTime);
+                var deltaDist = deltaTime * _shootSpeed;
+                
+                targetReached = CheckTargetReach(
+                    startPosition,
+                    ropeTip.position,
+                    normDir,
+                    deltaDist,
+                    out connected,
+                    out connectionPoint);
 
-                targetReached = CheckTargetReach(startPosition, newPos, out connected);
+                if (!targetReached)
+                {
+                    MoveRopeTip(ropeTip, normDir, _shootSpeed, deltaTime);
+                }
 
                 yield return null;
             }
 
             if (connected)
             {
-                
+                var hooked = _raycastsBuffer[0].collider;
+                Connect(ropeTip, hooked, connectionPoint);
+
+                if (BothTipsShot)
+                {
+                    if (BothTipsConnected)
+                    {
+                        yield return RetractRope();
+                    }
+                    else
+                    {
+                        // disappear rope
+                    }
+                }
             }
             else
             {
-                ropeTip.Weight = 0.5f;
+                ropeTip.Weight = 0.1f;
                 yield return KeepMovingWithDrag(ropeTip, normDir);
             }
+        }
+
+        private void Connect(RopeTip ropeTip, Collider2D coll, Vector2 connectionPoint)
+        {
+            var hooked = coll.GetComponent<IHookable>();
+            ropeTip.position = connectionPoint;
+            ropeTip.transform.SetParent(hooked.GetTransform(), true);
+            _connectedTips.Add(new Connection(ropeTip, hooked));
         }
 
         private Vector2 MoveRopeTip(RopeTip ropeTip, Vector2 normDir, float speed, float deltaTime)
@@ -110,18 +152,47 @@ namespace Hook
             }
         }
 
-        private bool CheckTargetReach(Vector2 startPosition, Vector2 tipPosition, out bool connected)
+        private IEnumerator RetractRope()
         {
-            int collisions = Physics2D.OverlapCircleNonAlloc(
+            float length = _rope.Length;
+            while (_rope.CurrentTension < _tensionToJoin)
+            {
+//                print($"length {_rope.Length}; tension: {_rope.CurrentTension}");
+                length -= _retractSpeed;
+                _rope.Length = length;
+                yield return null;
+            }
+
+            _rope.Length = 0;
+            
+            // start retracting
+            yield return _retractionController.Retract(_connectedTips[0], _connectedTips[1]);
+        }
+
+        private bool CheckTargetReach(
+            Vector2 startPosition,
+            Vector2 tipPosition,
+            Vector2 dir,
+            float moveDistance,
+            out bool connected,
+            out Vector2 connectionPoint)
+        {
+            var hits = Physics2D.CircleCastNonAlloc(
                 tipPosition,
                 _collisionRadius,
-                _collidersBuffer,
+                dir,
+                _raycastsBuffer,
+                moveDistance,
                 _mask);
+            
+            connectionPoint = Vector2.zero;
 
             bool targetReached = false;
-            if (collisions > 0)
+            if (hits > 0)
             {
                 connected = true;
+                var hit = _raycastsBuffer[0];
+                connectionPoint = hit.point;
                 targetReached = true;
             }
             else

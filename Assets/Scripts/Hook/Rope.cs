@@ -24,11 +24,16 @@ namespace Hook
         private List<RopeSegment> _ropeSegments = new List<RopeSegment>();
         private bool _initialized;
 
+        private float _currentTension;
+
         public float Length
         {
             get => _ropeSegLen * _segmentLength;
             set => _ropeSegLen = value / _segmentLength;
         }
+
+        [NaughtyAttributes.ShowNativeProperty]
+        public float CurrentTension => _currentTension;
 
         public RopeTip StartPoint
         {
@@ -99,7 +104,6 @@ namespace Hook
             var firstPos = Vector2.Lerp(firstSegment.posNow, _startPoint.position, _startPoint.Weight);
             firstSegment.posNow = firstPos;
             _startPoint.position = firstPos;
-//        firstSegment.posNow = _startPoint.position;
             _ropeSegments[0] = firstSegment;
 
             //Constraint to Last Point 
@@ -107,9 +111,10 @@ namespace Hook
             var endPos = Vector2.Lerp(endSegment.posNow, _endPoint.position, _endPoint.Weight);
             endSegment.posNow = endPos;
             _endPoint.position = endPos;
-//        endSegment.posNow = _endPoint.position;
             _ropeSegments[_ropeSegments.Count - 1] = endSegment;
 
+            float totalError = 0;
+            
             for (int i = 0; i < _segmentLength - 1; i++)
             {
                 RopeSegment firstSeg = _ropeSegments[i];
@@ -117,6 +122,7 @@ namespace Hook
 
                 float dist = (firstSeg.posNow - secondSeg.posNow).magnitude;
                 float error = Mathf.Abs(dist - _ropeSegLen);
+                totalError += error;
                 Vector2 changeDir = Vector2.zero;
 
                 if (dist > _ropeSegLen)
@@ -129,11 +135,20 @@ namespace Hook
                 }
 
                 Vector2 changeAmount = changeDir * error;
-                firstSeg.posNow -= changeAmount * 0.5f;
-                _ropeSegments[i] = firstSeg;
-                secondSeg.posNow += changeAmount * 0.5f;
-                _ropeSegments[i + 1] = secondSeg;
+                if (i != 0 || _startPoint.Weight < 1)
+                {
+                    firstSeg.posNow -= changeAmount * 0.5f;
+                    _ropeSegments[i] = firstSeg;
+                }
+
+                if (i != _segmentLength - 2 || _endPoint.Weight < 1)
+                {
+                    secondSeg.posNow += changeAmount * 0.5f;
+                    _ropeSegments[i + 1] = secondSeg;
+                }
             }
+
+            _currentTension = totalError / _segmentLength;
         }
 
         private void DrawRope()
