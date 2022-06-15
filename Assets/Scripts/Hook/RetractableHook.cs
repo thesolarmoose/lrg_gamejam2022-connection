@@ -165,7 +165,12 @@ namespace Hook
             _rope.Length = 0;
             
             // start retracting
-            yield return _retractionController.Retract(_connectedTips[0], _connectedTips[1]);
+            var firstConnection = _connectedTips[0];
+            var secondConnection = _connectedTips[1];
+            bool areSame = firstConnection.Hooked == secondConnection.Hooked;
+            
+            if (!areSame)
+                yield return _retractionController.Retract(firstConnection, secondConnection);
         }
 
         private bool CheckTargetReach(
