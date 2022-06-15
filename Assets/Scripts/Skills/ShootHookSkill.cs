@@ -1,9 +1,10 @@
-﻿using Hook;
+﻿using Character;
+using Hook;
 using UnityEngine;
 
-namespace Character
+namespace Skills
 {
-    public class ShootSkill : MonoBehaviour
+    public class ShootHookSkill : BaseDirectionalSkill
     {
         [SerializeField] private GunLooker _gun;
         [SerializeField] private RetractableHook _hookPrefab;
@@ -15,18 +16,18 @@ namespace Character
 
         private bool CanShoot => Time.time > _lastTimeShot + _cooldown;
 
-        public void Shoot()
+        public override void Use(Vector2 dir)
         {
             if (_currentHook != null && _currentHook.IsStillConnected)
             {
-                _currentHook.Shoot(_gun.CurrentLookDirection, transform);
+                _currentHook.Shoot(dir, transform);
                 _lastTimeShot = Time.time;
             }
             else if (CanShoot)
             {
                 _currentHook = Instantiate(_hookPrefab);
                 _currentHook.Initialize(transform.position);
-                _currentHook.Shoot(_gun.CurrentLookDirection, transform);
+                _currentHook.Shoot(dir, transform);
             }
         }
     }

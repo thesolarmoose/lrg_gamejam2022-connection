@@ -124,7 +124,7 @@ namespace Hook
         {
             var hooked = coll.GetComponent<Hookable>();
             ropeTip.position = connectionPoint;
-            ropeTip.transform.SetParent(hooked.transform, true);
+            ropeTip.transform.SetParent(hooked.Transform, true);
             _connectedTips.Add(new Connection(ropeTip, hooked));
         }
 

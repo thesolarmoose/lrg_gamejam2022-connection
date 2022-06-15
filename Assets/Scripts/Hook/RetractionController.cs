@@ -21,8 +21,8 @@ namespace Hook
             var firstDir = (secondTip.position - firstTip.position).normalized;
             var secondDir = -firstDir;
 
-            var firstTransform = firstHooked.transform;
-            var secondTransform = secondHooked.transform;
+            var firstTransform = firstHooked.Transform;
+            var secondTransform = secondHooked.Transform;
             var firstCollider = firstHooked.Collider;
             var secondCollider = secondHooked.Collider;
             bool firstCanMove = firstHooked.IsMovable;
@@ -66,9 +66,13 @@ namespace Hook
 
         private float ComputeMoveDistance(Collider2D firstCollider, Collider2D secondCollider, Vector2 dir, bool bothMove)
         {
-            var filter = new ContactFilter2D {layerMask = _hookablesMask};
-            firstCollider.Cast(dir, filter, _raycastHitsBuffer);
-            if (FindColliderInRayCastList(secondCollider, out var hit))
+            var filter = new ContactFilter2D
+            {
+                layerMask = _hookablesMask,
+                useTriggers = true,
+            };
+            int hits = firstCollider.Cast(dir, filter, _raycastHitsBuffer);
+            if (FindColliderInRayCastList(hits, secondCollider, out var hit))
             {
                 var distance = hit.distance;
                 float moveDistance = bothMove ? distance * 0.5f : distance;
@@ -79,10 +83,11 @@ namespace Hook
             return 0;
         }
 
-        private bool FindColliderInRayCastList(Collider2D collider, out RaycastHit2D raycast)
+        private bool FindColliderInRayCastList(int hitsCount, Collider2D collider, out RaycastHit2D raycast)
         {
-            foreach (var ray in _raycastHitsBuffer)
+            for (int i = 0; i < hitsCount; i++)
             {
+                var ray = _raycastHitsBuffer[i];
                 if (ray.collider == collider)
                 {
                     raycast = ray;

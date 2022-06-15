@@ -7,6 +7,7 @@ namespace Hook
     public class Hookable : MonoBehaviour
     {
         [SerializeField] private bool _isMovable;
+        [SerializeField] private Transform _transform;
         [SerializeField] private Collider2D _collider;
         
         [SerializeField] private UnityEvent onConnected;
@@ -14,6 +15,8 @@ namespace Hook
         [SerializeField] private UnityEvent<Hookable> onCollided;
 
         public bool IsMovable => _isMovable;
+
+        public Transform Transform => _transform;
         public Collider2D Collider => _collider;
 
         public void OnConnected()

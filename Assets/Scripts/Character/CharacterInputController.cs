@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Skills;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -8,8 +9,8 @@ namespace Character
     public class CharacterInputController : MonoBehaviour
     {
         [SerializeField] private CharacterMovement _character;
-        [SerializeField] private ShootSkill _shootSkill;
-        [SerializeField] private Transform _gun;
+        [SerializeField] private BaseDirectionalSkill _shootSkill;
+        [SerializeField] private GunLooker _gun;
         
         [SerializeField] private Camera _camera;
         [SerializeField] private float _gamepadCursorDist;
@@ -57,7 +58,7 @@ namespace Character
 
         private void OnShoot(InputAction.CallbackContext ctx)
         {
-            _shootSkill.Shoot();
+            _shootSkill.Use(_gun.CurrentLookDirection);
         }
 
         private void Update()
