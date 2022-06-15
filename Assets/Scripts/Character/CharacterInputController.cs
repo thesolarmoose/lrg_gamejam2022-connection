@@ -9,10 +9,10 @@ namespace Character
     {
         [SerializeField] private CharacterMovement _character;
         [SerializeField] private ShootSkill _shootSkill;
+        [SerializeField] private Transform _gun;
         
         [SerializeField] private Camera _camera;
         [SerializeField] private float _gamepadCursorDist;
-        
         
         [SerializeField] private InputActionReference _moveAction;
         [SerializeField] private InputActionReference _lookAction;
@@ -62,7 +62,7 @@ namespace Character
 
         private void Update()
         {
-            var charPos = _character.transform.position;
+            var gunPos = _character.transform.position;
             
             // move dir
             var moveDir = _moveAction.action.ReadValue<Vector2>();
@@ -74,7 +74,7 @@ namespace Character
             {
                 lookDir = _lookAction.action.ReadValue<Vector2>();
                 var cursorOffset = lookDir * _gamepadCursorDist;
-                var cursorPosition = charPos + (Vector3) cursorOffset;
+                var cursorPosition = gunPos + (Vector3) cursorOffset;
                 var cursorScreenPosition = _camera.WorldToScreenPoint(cursorPosition);
                 if (lookDir.sqrMagnitude < 0.01f)
                     hideCursor = true;
@@ -84,7 +84,7 @@ namespace Character
             {
                 var pointerScreenPos = _pointAction.action.ReadValue<Vector2>();
                 var pointerWorldPos = _camera.ScreenToWorldPoint(pointerScreenPos);
-                lookDir = pointerWorldPos - charPos;
+                lookDir = pointerWorldPos - gunPos;
             }
             
             _character.Move(moveDir);
