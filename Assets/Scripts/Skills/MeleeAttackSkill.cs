@@ -16,7 +16,8 @@ namespace Skills
             if (CanShoot)
             {
                 _lastTimeShot = Time.time;
-                Instantiate(_attackPrefab, transform.position, transform.rotation);
+                var attack = Instantiate(_attackPrefab, transform.position, transform.rotation);
+                attack.transform.localScale = transform.lossyScale;
             }
         }
     }

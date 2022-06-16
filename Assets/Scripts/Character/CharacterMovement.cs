@@ -19,6 +19,14 @@ namespace Character
 
         public float CurrentSpeed => _currentVelocity.sqrMagnitude;
 
+        public Vector2 CurrentVelocity => _currentVelocity;
+
+        public float MaxSpeed
+        {
+            get => _speed;
+            set => _speed = value;
+        }
+
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
