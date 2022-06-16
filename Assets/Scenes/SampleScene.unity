@@ -331,6 +331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangedEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5526327214562517284, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5526327214562517469, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1393,6 +1397,10 @@ PrefabInstance:
     - target: {fileID: 5526327214562517284, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526327214562517284, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5526327214562517469, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
       propertyPath: m_RootOrder
@@ -2574,6 +2582,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1858979173}
     m_Modifications:
+    - target: {fileID: 3092625754649802360, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
+      propertyPath: _localBounds.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092625754649802360, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
+      propertyPath: _localBounds.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092625754649802360, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
+      propertyPath: _localBounds.width
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092625754649802360, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
+      propertyPath: _localBounds.height
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5526327214562517284, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy

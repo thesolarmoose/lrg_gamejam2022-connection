@@ -18,6 +18,10 @@ namespace AI.Behaviours
         private Vector2 _currentTarget;
         private float _originalSpeed;
 
+        public Rect GlobalBounds => _globalBounds;
+
+        public Rect LocalBounds => _localBounds;
+
         private void OnEnable()
         {
             ComputeNextTarget();
@@ -34,9 +38,8 @@ namespace AI.Behaviours
         {
             Vector2 selfPos = _movement.transform.position;
             var local = new Rect(_localBounds);
-            local.x += selfPos.x;// - local.width * 0.5f;
-            local.y += selfPos.y;// - local.height * 0.5f;
-            
+            local.x += selfPos.x;
+            local.y += selfPos.y;
             
             var intersection = _globalBounds.Intersection(local);
             if (intersection.width < 0 || intersection.height < 0)
@@ -52,14 +55,6 @@ namespace AI.Behaviours
             }
 
             _currentTarget = target;
-            
-            Debug.DrawLine(local.min, local.max, Color.red, 1f);
-            Debug.DrawLine(_globalBounds.min, _globalBounds.max, Color.blue, 1f);
-            Debug.DrawLine(intersection.min, intersection.max, Color.green, 1f);
-
-            float len = 0.1f;
-            Debug.DrawLine(_currentTarget + Vector2.left * len, _currentTarget + Vector2.right * len, Color.magenta, 1f);
-            Debug.DrawLine(_currentTarget + Vector2.up * len, _currentTarget + Vector2.down * len, Color.magenta, 1f);
         }
 
         private void Update()
