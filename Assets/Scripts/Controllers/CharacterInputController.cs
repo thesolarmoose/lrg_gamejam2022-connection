@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Character;
 using Skills;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
-namespace Character
+namespace Controllers
 {
     public class CharacterInputController : MonoBehaviour
     {
@@ -63,7 +63,7 @@ namespace Character
 
         private void Update()
         {
-            var gunPos = _character.transform.position;
+            var charPos = _character.transform.position;
             
             // move dir
             var moveDir = _moveAction.action.ReadValue<Vector2>();
@@ -75,7 +75,7 @@ namespace Character
             {
                 lookDir = _lookAction.action.ReadValue<Vector2>();
                 var cursorOffset = lookDir * _gamepadCursorDist;
-                var cursorPosition = gunPos + (Vector3) cursorOffset;
+                var cursorPosition = charPos + (Vector3) cursorOffset;
                 var cursorScreenPosition = _camera.WorldToScreenPoint(cursorPosition);
                 if (lookDir.sqrMagnitude < 0.01f)
                     hideCursor = true;
@@ -85,7 +85,7 @@ namespace Character
             {
                 var pointerScreenPos = _pointAction.action.ReadValue<Vector2>();
                 var pointerWorldPos = _camera.ScreenToWorldPoint(pointerScreenPos);
-                lookDir = pointerWorldPos - gunPos;
+                lookDir = pointerWorldPos - charPos;
             }
             
             _character.Move(moveDir);

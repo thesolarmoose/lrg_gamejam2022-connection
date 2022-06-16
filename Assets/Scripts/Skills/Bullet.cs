@@ -1,7 +1,11 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using Animations;
 using Character;
 using UnityEngine;
+using Utils;
 using Utils.Extensions;
+using Utils.Tweening;
 
 namespace DefaultNamespace
 {
@@ -15,6 +19,8 @@ namespace DefaultNamespace
         [SerializeField] private LayerMask _whoToDamage;
         [SerializeField] private LayerMask _whoToIgnore;
 
+        [Space, SerializeField] private SpritesAnimation _destroyAnimation;
+
         private RaycastHit2D[] _raycastsBuffer = new RaycastHit2D[5];
 
         public void Shoot(Vector2 dir)
@@ -25,8 +31,8 @@ namespace DefaultNamespace
         private IEnumerator ShootEnumerator(Vector2 dir)
         {
             var timeToDestroy = Time.time + _timeToDestroy;
-
-            while (Time.time < timeToDestroy)
+            bool collided = false;
+            while (Time.time < timeToDestroy && !collided)
             {
                 float moveDist = _speed * Time.deltaTime;
                 var filter = new ContactFilter2D
@@ -42,7 +48,8 @@ namespace DefaultNamespace
                     var obj = hit.collider.gameObject;
                     DoDamage(obj);
                     DestroyBullet();
-                    movePosition = hit.centroid;
+                    movePosition = (Vector2) transform.position + hit.centroid;
+                    collided = true;
                 }
                 else
                 {
@@ -59,7 +66,13 @@ namespace DefaultNamespace
 
         private void DestroyBullet()
         {
-            Destroy(gameObject);
+            var coroutine = CoroutineUtils.CoroutineSequence(new List<IEnumerator>
+            {
+                CoroutineUtils.ActionCoroutine(() => _collider.enabled = false),
+                _destroyAnimation.Play(Curves.Linear),
+                CoroutineUtils.ActionCoroutine(() => Destroy(gameObject)),
+            });
+            StartCoroutine(coroutine);
         }
 
         private void DoDamage(GameObject obj)

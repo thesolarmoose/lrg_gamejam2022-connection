@@ -32,6 +32,11 @@ namespace Hook
         private bool BothTipsShot => _firstShot && _secondShot;
         private bool BothTipsConnected => _connectedTips.Count == 2;
 
+        private Connection FirstConnection => _connectedTips[0];
+        private Connection SecondConnection => _connectedTips[1];
+        private Hookable FirstConnected => _connectedTips[0].Hooked;
+        private Hookable SecondConnected => _connectedTips[1].Hooked;
+
         public void Initialize(Vector2 position)
         {
             transform.position = position;
@@ -123,6 +128,7 @@ namespace Hook
         private void Connect(RopeTip ropeTip, Collider2D coll, Vector2 connectionPoint)
         {
             var hooked = coll.GetComponent<Hookable>();
+            hooked.OnConnected();
             ropeTip.position = connectionPoint;
             ropeTip.transform.SetParent(hooked.Transform, true);
             _connectedTips.Add(new Connection(ropeTip, hooked));
@@ -153,6 +159,9 @@ namespace Hook
 
         private IEnumerator RetractRope()
         {
+            FirstConnected.OnStartRetracting();
+            SecondConnected.OnStartRetracting();
+            
             float length = _rope.Length;
             while (_rope.CurrentTension < _tensionToJoin)
             {
@@ -165,12 +174,14 @@ namespace Hook
             _rope.Length = 0;
             
             // start retracting
-            var firstConnection = _connectedTips[0];
-            var secondConnection = _connectedTips[1];
-            bool areSame = firstConnection.Hooked == secondConnection.Hooked;
-            
+            bool areSame = FirstConnection.Hooked == SecondConnection.Hooked;
+
             if (!areSame)
-                yield return _retractionController.Retract(firstConnection, secondConnection);
+            {
+                yield return _retractionController.Retract(FirstConnection, SecondConnection);
+                FirstConnected.OnCollided(SecondConnected);
+                SecondConnected.OnCollided(FirstConnected);
+            }
         }
 
         private bool CheckTargetReach(
