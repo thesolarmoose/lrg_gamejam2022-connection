@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.Linq;
 using Character;
-using UnityEditor;
+using Terrain;
 using UnityEngine;
 using Utils.Extensions;
 
@@ -9,7 +9,7 @@ namespace AI.Behaviours
     public class MoveRandom : AiBehaviour
     {
         [SerializeField] private CharacterMovement _movement;
-        [SerializeField] private Rect _globalBounds;
+        [SerializeField] private TerrainReference _terrainReference;
         [SerializeField] private Rect _localBounds;
         [SerializeField] private float _minDistance;
         [SerializeField] private float _targetReachEpsilon;
@@ -17,8 +17,6 @@ namespace AI.Behaviours
 
         private Vector2 _currentTarget;
         private float _originalSpeed;
-
-        public Rect GlobalBounds => _globalBounds;
 
         public Rect LocalBounds => _localBounds;
 
@@ -36,16 +34,18 @@ namespace AI.Behaviours
 
         private void ComputeNextTarget()
         {
+            var terrainRects = _terrainReference.Terrain.Rects;
+
             Vector2 selfPos = _movement.transform.position;
             var local = new Rect(_localBounds);
             local.x += selfPos.x;
             local.y += selfPos.y;
-            
-            var intersection = _globalBounds.Intersection(local);
-            if (intersection.width < 0 || intersection.height < 0)
-            {
-                intersection = _globalBounds;
-            }
+
+            var intersections = terrainRects.Select(rect => rect.Intersection(local))
+                .Where(intersect => intersect.width > 0 && intersect.height > 0)
+                .ToList();
+
+            var intersection = intersections.Count == 0 ? terrainRects.GetRandom() : intersections.GetRandom();
             
             var target = intersection.RandomPositionInside();
             var movement = target - selfPos;

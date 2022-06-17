@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Terrain;
 using UnityEngine;
-using Utils;
-using Utils.Extensions;
 using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
 {
     public class EnemySpawner : MonoBehaviour
     {
+        [SerializeField] private TerrainReference _terrainReference;
         [SerializeField] private GameObject _prefab;
         [SerializeField] private float _firstTimeOffset;
         [SerializeField] private float _minTime;
         [SerializeField] private float _maxTime;
-        [SerializeField, DrawRectInScene] private Rect _spawnSpace;
         
         [Space, SerializeField] private float _minDistanceToPlayer;
         [SerializeField] private Transform _player;
@@ -20,8 +18,6 @@ namespace DefaultNamespace
         private float _nextTimeToSpawn;
 
         private bool ShouldSpawn => Time.time > _nextTimeToSpawn;
-
-        public Rect SpawnSpace => _spawnSpace;
 
         private void ComputeNextTime()
         {
@@ -31,16 +27,18 @@ namespace DefaultNamespace
 
         private Vector2 ComputeSpawnPosition()
         {
-            var position = _spawnSpace.RandomPositionInside();
-            Vector2 playerPos = _player.position;
-            var playerDist = Vector2.Distance(playerPos, position);
-            if (playerDist < _minDistanceToPlayer)
+            Vector2 position;
+            float playerDist;
+            int attempts = 5;
+            int attempt = 0;
+            do
             {
-                var dirToCenter = _spawnSpace.center - playerPos;
-                dirToCenter.Normalize();
-                position = dirToCenter * _minDistanceToPlayer;
-            }
-
+                position = _terrainReference.Terrain.GetRandomPointInside();
+                Vector2 playerPos = _player.position;
+                playerDist = Vector2.Distance(playerPos, position);
+                attempt++;
+            } while (playerDist < _minDistanceToPlayer && attempt <= attempts);
+            
             return position;
         }
 

@@ -48,12 +48,7 @@ MonoBehaviour:
   - _condition: {fileID: 3975176185104047985}
     _behaviour: {fileID: 7488941707650056910}
   _movement: {fileID: 5554589696652317131}
-  _globalBounds:
-    serializedVersion: 2
-    x: -7
-    y: -5
-    width: 14
-    height: 10
+  _terrainReference: {fileID: 11400000, guid: e7aa248b9f512c64f9ab5ab75b542de0, type: 2}
   _localBounds:
     serializedVersion: 2
     x: -2.5
