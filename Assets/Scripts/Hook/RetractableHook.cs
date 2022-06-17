@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Hook
 {
@@ -18,6 +19,12 @@ namespace Hook
         [SerializeField] private float _minShootLength;
         [SerializeField] private float _collisionRadius;
         [SerializeField] private LayerMask _mask;
+
+        public UnityEvent OnTipShot;
+        public UnityEvent OnTipConnected;
+        public UnityEvent OnBothTipsConnected;
+        public UnityEvent OnStartRetracting;
+        public UnityEvent OnFinishedRetracting;
         
         private bool _firstShot;
         private bool _secondShot;
@@ -68,6 +75,7 @@ namespace Hook
 
         private void Shoot(Vector2 dir, RopeTip ropeTip)
         {
+            OnTipShot?.Invoke();
             StartCoroutine(ShootTip(dir, ropeTip));
         }
 
@@ -110,6 +118,7 @@ namespace Hook
                 {
                     if (BothTipsConnected)
                     {
+                        OnBothTipsConnected?.Invoke();
                         yield return RetractRope();
                     }
                     else
@@ -132,6 +141,7 @@ namespace Hook
             ropeTip.position = connectionPoint;
             ropeTip.transform.SetParent(hooked.Transform, true);
             _connectedTips.Add(new Connection(ropeTip, hooked));
+            OnTipConnected?.Invoke();
         }
 
         private Vector2 MoveRopeTip(RopeTip ropeTip, Vector2 normDir, float speed, float deltaTime)
@@ -159,13 +169,13 @@ namespace Hook
 
         private IEnumerator RetractRope()
         {
+            OnStartRetracting?.Invoke();
             FirstConnected.OnStartRetracting();
             SecondConnected.OnStartRetracting();
             
             float length = _rope.Length;
             while (_rope.CurrentTension < _tensionToJoin)
             {
-//                print($"length {_rope.Length}; tension: {_rope.CurrentTension}");
                 length -= _retractSpeed;
                 _rope.Length = length;
                 yield return null;
@@ -182,6 +192,8 @@ namespace Hook
                 FirstConnected.OnCollided(SecondConnected);
                 SecondConnected.OnCollided(FirstConnected);
             }
+            
+            OnFinishedRetracting?.Invoke();
         }
 
         private bool CheckTargetReach(

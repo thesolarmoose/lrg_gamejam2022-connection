@@ -28,6 +28,13 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.solidalloy.util": {
+      "version": "1.39.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.unity.2d.animation": {
       "version": "6.0.3",
       "depth": 0,

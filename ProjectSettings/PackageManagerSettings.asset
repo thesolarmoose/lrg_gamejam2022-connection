@@ -34,6 +34,7 @@ MonoBehaviour:
     - com.mackysoft.serializereference-extensions
     - com.needle
     - com.openupm
+    - com.solidalloy.util
     - com.yasirkula
     m_IsDefault: 0
     m_Capabilities: 0
@@ -51,6 +52,7 @@ MonoBehaviour:
       - com.mackysoft.serializereference-extensions
       - com.needle
       - com.openupm
+      - com.solidalloy.util
       - com.yasirkula
       m_IsDefault: 0
       m_Capabilities: 0
@@ -63,6 +65,7 @@ MonoBehaviour:
     - com.mackysoft.serializereference-extensions
     - com.needle
     - com.openupm
+    - com.solidalloy.util
     - com.yasirkula
     m_SelectedScopeIndex: 0
   m_LoadAssets: 0
