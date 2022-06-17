@@ -62,9 +62,23 @@ namespace Hook
                     yield return null;
                 }
             }
+
+            bool firstExists = firstHooked != null && firstHooked.gameObject.activeInHierarchy;
+            bool secondExists = secondHooked != null && secondHooked.gameObject.activeInHierarchy;
+            bool bothExist = firstExists && secondExists;
+
+            if (bothExist)
+            {
+                firstHooked.OnCollided(secondHooked);
+                secondHooked.OnCollided(firstHooked);
+            }
         }
 
-        private float ComputeMoveDistance(Collider2D firstCollider, Collider2D secondCollider, Vector2 dir, bool bothMove)
+        private float ComputeMoveDistance(
+            Collider2D firstCollider,
+            Collider2D secondCollider,
+            Vector2 dir,
+            bool bothMove)
         {
             var filter = new ContactFilter2D
             {

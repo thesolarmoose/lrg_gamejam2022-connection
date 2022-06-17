@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Utils.Tweening;
 
 namespace Hook
 {
     public class RetractableHook : MonoBehaviour
     {
         [SerializeField] private Rope _rope;
+        [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private RetractionController _retractionController;
         
         [SerializeField] private float _retractSpeed;
@@ -19,6 +21,7 @@ namespace Hook
         [SerializeField] private float _minShootLength;
         [SerializeField] private float _collisionRadius;
         [SerializeField] private LayerMask _mask;
+        [SerializeField] private float _disappearTime;
 
         public UnityEvent OnTipShot;
         public UnityEvent OnTipConnected;
@@ -31,7 +34,7 @@ namespace Hook
         
         private RaycastHit2D[] _raycastsBuffer = new RaycastHit2D[5];
         private List<Connection> _connectedTips = new List<Connection>();
-        
+
         public bool IsStillConnected => !_secondShot;
 
         public Rope Rope => _rope;
@@ -114,23 +117,21 @@ namespace Hook
                 var hooked = _raycastsBuffer[0].collider;
                 Connect(ropeTip, hooked, connectionPoint);
 
-                if (BothTipsShot)
+                if (BothTipsConnected)
                 {
-                    if (BothTipsConnected)
-                    {
-                        OnBothTipsConnected?.Invoke();
-                        yield return RetractRope();
-                    }
-                    else
-                    {
-                        // disappear rope
-                    }
+                    OnBothTipsConnected?.Invoke();
+                    yield return RetractRope();
                 }
             }
             else
             {
                 ropeTip.Weight = 0.1f;
                 yield return KeepMovingWithDrag(ropeTip, normDir);
+            }
+
+            if (BothTipsShot)
+            {
+                yield return DisappearRope();
             }
         }
 
@@ -189,11 +190,32 @@ namespace Hook
             if (!areSame)
             {
                 yield return _retractionController.Retract(FirstConnection, SecondConnection);
-                FirstConnected.OnCollided(SecondConnected);
-                SecondConnected.OnCollided(FirstConnected);
             }
             
             OnFinishedRetracting?.Invoke();
+        }
+
+        private IEnumerator DisappearRope()
+        {
+            yield return TweeningUtils.TweenTimeCoroutine(
+                time =>
+                {
+                    var material = _lineRenderer.material;
+                    var color = material.color;
+                    color.a = 1 - time;
+                    material.color = color;
+                },
+                _disappearTime,
+                Curves.Linear);
+
+            DestroySelf();
+        }
+
+        private void DestroySelf()
+        {
+            Destroy(gameObject);
+            Destroy(_rope.StartPoint.gameObject);
+            Destroy(_rope.EndPoint.gameObject);
         }
 
         private bool CheckTargetReach(

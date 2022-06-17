@@ -268,10 +268,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rope: {fileID: 9202149046650302234}
+  _lineRenderer: {fileID: 9202149046650302235}
   _retractionController:
     _retractionMaxSpeed: 7
     _retractionInitialSpeed: 0
-    _retractionAcceleration: 0.3
+    _retractionAcceleration: 0.5
     _hookablesMask:
       serializedVersion: 2
       m_Bits: 64
@@ -285,6 +286,7 @@ MonoBehaviour:
   _mask:
     serializedVersion: 2
     m_Bits: 64
+  _disappearTime: 1
   OnTipShot:
     m_PersistentCalls:
       m_Calls:
