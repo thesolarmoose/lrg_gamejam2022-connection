@@ -1,18 +1,12 @@
-﻿using System;
-using AI.Behaviours;
+﻿using AI.Behaviours;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Editor.CustomEditors
 {
     [CustomEditor(typeof(MoveRandom))]
     public class MoveRandomEditor : UnityEditor.Editor
     {
-//        public override void OnInspectorGUI()
-//        {
-//            DrawDefaultInspector();
-//        }
-
         private void OnSceneGUI()
         {
             var obj = (MoveRandom) target;

@@ -2033,6 +2033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1858979173}
+  - component: {fileID: 1858979174}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -2060,6 +2061,30 @@ Transform:
   m_Father: {fileID: 239051909}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1858979174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858979172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed9602a066dd5b438e37890da35068d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 5554589696652317133, guid: 610e77a3e19e85742937868477c060cd, type: 3}
+  _firstTimeOffset: 2
+  _minTime: 3
+  _maxTime: 5
+  _spawnSpace:
+    serializedVersion: 2
+    x: -11
+    y: -7
+    width: 22
+    height: 14
+  _minDistanceToPlayer: 5
+  _player: {fileID: 311187450}
 --- !u!1 &1866767448
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,6 +2364,70 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventDied.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventHealed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventDied.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventDied.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventHealed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventHealed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventDied.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventDied.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DropAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventHealed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventHealed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DropAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventDied.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Audio.AudioReferences, com.thesolarmoose.gunnect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventHealed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Audio.AudioReferences, com.thesolarmoose.gunnect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventDied.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 457b8b213d95efd4586c360e973c0a84, type: 2}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventHealed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 457b8b213d95efd4586c360e973c0a84, type: 2}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventDied.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132822813971335042, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
+      propertyPath: eventHealed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
+      objectReference: {fileID: 0}
     - target: {fileID: 4132822813971335046, guid: 5f54fe0b228cf3c4ca90736d37da7322, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2399,6 +2488,10 @@ PrefabInstance:
     - target: {fileID: 5526327214562517284, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526327214562517284, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5526327214562517469, guid: 2c190c17124adea42970aa72ea8f84cc, type: 3}
       propertyPath: m_RootOrder

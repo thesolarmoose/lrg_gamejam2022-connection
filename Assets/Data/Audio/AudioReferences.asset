@@ -17,6 +17,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1754bb0d992d3014593bdafc94800f39, type: 2}
     - {fileID: 11400000, guid: 2459df690b78b6b4c86e4f3c56ed2576, type: 2}
     - {fileID: 11400000, guid: d103039ee19b40240a57fca5e382b71a, type: 2}
+    - {fileID: 11400000, guid: 457b8b213d95efd4586c360e973c0a84, type: 2}
     _values:
     - _provider:
         id: 0
@@ -24,6 +25,8 @@ MonoBehaviour:
         id: 1
     - _provider:
         id: 2
+    - _provider:
+        id: 3
   _audioSourcePrefab: {fileID: 6050581541102381393, guid: 0323c37e06ff54c4da4a87d59e758f1e, type: 3}
   references:
     version: 1
@@ -50,3 +53,7 @@ MonoBehaviour:
         _audioClips:
         - {fileID: 8300000, guid: 5db02e11e36c99943b4feb1b78f98897, type: 3}
         - {fileID: 8300000, guid: ae73f26e70457be488edebe9649dcc30, type: 3}
+    00000003:
+      type: {class: SingleAudioProvider, ns: Audio, asm: com.thesolarmoose.gunnect}
+      data:
+        _audioClip: {fileID: 8300000, guid: 18dcf36dbca28414cbb8a35b981fbeb9, type: 3}
