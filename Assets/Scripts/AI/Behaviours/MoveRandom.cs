@@ -34,27 +34,34 @@ namespace AI.Behaviours
 
         private void ComputeNextTarget()
         {
-            var terrainRects = _terrainReference.Terrain.Rects;
-
-            Vector2 selfPos = _movement.transform.position;
-            var local = new Rect(_localBounds);
-            local.x += selfPos.x;
-            local.y += selfPos.y;
-
-            var intersections = terrainRects.Select(rect => rect.Intersection(local))
-                .Where(intersect => intersect.width > 0 && intersect.height > 0)
-                .ToList();
-
-            var intersection = intersections.Count == 0 ? terrainRects.GetRandom() : intersections.GetRandom();
-            
-            var target = intersection.RandomPositionInside();
-            var movement = target - selfPos;
-            if (movement.magnitude < _minDistance)
+            if (_terrainReference.Terrain != null)
             {
-                target = selfPos + movement.normalized * _minDistance;
-            }
+                var terrainRects = _terrainReference.Terrain.Rects;
 
-            _currentTarget = target;
+                Vector2 selfPos = _movement.transform.position;
+                var local = new Rect(_localBounds);
+                local.x += selfPos.x;
+                local.y += selfPos.y;
+
+                var intersections = terrainRects.Select(rect => rect.Intersection(local))
+                    .Where(intersect => intersect.width > 0 && intersect.height > 0)
+                    .ToList();
+
+                var intersection = intersections.Count == 0 ? terrainRects.GetRandom() : intersections.GetRandom();
+                
+                var target = intersection.RandomPositionInside();
+                var movement = target - selfPos;
+                if (movement.magnitude < _minDistance)
+                {
+                    target = selfPos + movement.normalized * _minDistance;
+                }
+
+                _currentTarget = target;
+            }
+            else
+            {
+                _currentTarget = transform.position;
+            }
         }
 
         private void Update()
