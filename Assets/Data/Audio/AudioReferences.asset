@@ -80,14 +80,9 @@ MonoBehaviour:
       data:
         _audioClip: {fileID: 8300000, guid: 654437747380ad64d81549a6f3ca18fb, type: 3}
     00000005:
-      type: {class: RandomAudioProvider, ns: Audio, asm: com.thesolarmoose.gunnect}
+      type: {class: SingleAudioProvider, ns: Audio, asm: com.thesolarmoose.gunnect}
       data:
-        _audioClips:
-        - {fileID: 8300000, guid: 93b2f3d0b8e7e49439761ca39c76b149, type: 3}
-        - {fileID: 8300000, guid: 34ce7250aee2745479e5d90760c23e95, type: 3}
-        - {fileID: 8300000, guid: df6cf13a103fde64a9077e47191b3a44, type: 3}
-        - {fileID: 8300000, guid: bc47aedcd7b1a0741abadd63bc5fa841, type: 3}
-        - {fileID: 8300000, guid: 15a575aa8473f664c9df25d55c74ecd5, type: 3}
+        _audioClip: {fileID: 8300000, guid: 4d15b0b4b8402ea43a44fe65c14fd3c1, type: 3}
     00000006:
       type: {class: SingleAudioProvider, ns: Audio, asm: com.thesolarmoose.gunnect}
       data:

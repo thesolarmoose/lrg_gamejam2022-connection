@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Hook
 {
+    [Serializable]
     public class Connection
     {
-        private RopeTip _tip;
-        private Hookable _hooked;
+        [SerializeField] private RopeTip _tip;
+        [SerializeField] private Hookable _hooked;
 
         public RopeTip Tip => _tip;
         public Hookable Hooked => _hooked;
