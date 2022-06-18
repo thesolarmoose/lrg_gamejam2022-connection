@@ -1,4 +1,4 @@
-﻿#./_git_scripts/commit_levels.sh "commit before pulling"
+#./_git_scripts/commit_levels.sh "commit before pulling"
 ./_git_scripts/commit_levels_with_prompt.sh
 
 git switch dev
