@@ -6526,7 +6526,7 @@ GameObject:
   - component: {fileID: 908304775}
   - component: {fileID: 908304774}
   m_Layer: 0
-  m_Name: Walls
+  m_Name: InvisibleWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
