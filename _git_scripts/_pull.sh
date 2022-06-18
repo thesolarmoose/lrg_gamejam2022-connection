@@ -1,4 +1,4 @@
-﻿cd ..
+cd ..
 
 ./_git_scripts/pull_not_wait.sh
 

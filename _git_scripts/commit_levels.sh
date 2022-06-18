@@ -1,4 +1,4 @@
-﻿if [[ -z $1 ]]; then
+if [[ -z $1 ]]; then
 	message="--- $(date +%D-%T)"
 else
 	message=$1
