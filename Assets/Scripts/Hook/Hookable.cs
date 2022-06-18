@@ -16,7 +16,7 @@ namespace Hook
         [SerializeField] private UnityEvent onConnected;
         [SerializeField] private UnityEvent onStartRetracting;
         [SerializeField] private UnityEvent<Hookable> onCollided;
-        [SerializeField] private ConnectionEvent _connectionEvent;
+        [SerializeField] private ConnectionEvent _connectedToOtherEvent;
 
         public bool IsMovable => _isMovable;
 
@@ -33,7 +33,7 @@ namespace Hook
 
         public void OnConnectedWithOther(Connection other)
         {
-            _connectionEvent.ExecuteIfMetConditions(other);
+            _connectedToOtherEvent.ExecuteIfMetConditions(other);
         }
 
         public void OnStartRetracting()

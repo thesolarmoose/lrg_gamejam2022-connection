@@ -77,10 +77,15 @@ namespace Hook
 
             if (bothExist)
             {
-                var collision = new Collision(first, second, collisionPoint, speed);
-                CollisionEvents.Instance.NotifyCollision(collision);
-                firstHooked.OnCollided(secondHooked);
-                secondHooked.OnCollided(firstHooked);
+                firstHooked.OnConnectedWithOther(second);
+                secondHooked.OnConnectedWithOther(first);
+                if (anyCanMove)  // both collided
+                {
+                    var collision = new Collision(first, second, collisionPoint, speed);
+                    CollisionEvents.Instance.NotifyCollision(collision);
+                    firstHooked.OnCollided(secondHooked);
+                    secondHooked.OnCollided(firstHooked);
+                }
             }
         }
 
