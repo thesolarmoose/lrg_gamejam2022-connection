@@ -279,9 +279,9 @@ MonoBehaviour:
   _retractSpeed: 1
   _tensionToJoin: 1.2
   _length: 5
-  _shootSpeed: 10
+  _lengthToDisconnect: 8
+  _shootSpeed: 100
   _drag: 0.8
-  _minShootLength: 8
   _collisionRadius: 0.2
   _mask:
     serializedVersion: 2
@@ -357,7 +357,7 @@ MonoBehaviour:
   _lineWidth: 0.05
   _gravityForce: {x: 0, y: 0}
   _drag: 0.1
-  _constraintsIters: 10
+  _constraintsIters: 100
 --- !u!120 &9202149046650302235
 LineRenderer:
   m_ObjectHideFlags: 0

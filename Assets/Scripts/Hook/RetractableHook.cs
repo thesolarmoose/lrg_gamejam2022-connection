@@ -16,9 +16,9 @@ namespace Hook
         [SerializeField] private float _retractSpeed;
         [SerializeField] private float _tensionToJoin;
         [SerializeField] private float _length;
+        [SerializeField] private float _lengthToDisconnect;
         [SerializeField] private float _shootSpeed;
         [SerializeField] private float _drag;
-        [SerializeField] private float _minShootLength;
         [SerializeField] private float _collisionRadius;
         [SerializeField] private LayerMask _mask;
         [SerializeField] private float _disappearTime;
@@ -26,6 +26,7 @@ namespace Hook
         public UnityEvent OnTipShot;
         public UnityEvent OnTipConnected;
         public UnityEvent OnBothTipsConnected;
+        public UnityEvent OnDisconnected;
         public UnityEvent OnStartRetracting;
         public UnityEvent OnFinishedRetracting;
         
@@ -46,6 +47,22 @@ namespace Hook
         private Connection SecondConnection => _connectedTips[1];
         private Hookable FirstConnected => _connectedTips[0].Hooked;
         private Hookable SecondConnected => _connectedTips[1].Hooked;
+
+        private void Update()
+        {
+            // check max distance
+            if (_firstShot && !_secondShot)
+            {
+                var dist = _rope.DistanceBetweenTips;
+                if (dist > _lengthToDisconnect)
+                {
+                    Disconnect(_rope.EndPoint);
+                    _secondShot = true;
+                    StartCoroutine(DisappearRope());
+                    OnDisconnected?.Invoke();
+                }
+            }
+        }
 
         public void Initialize(Vector2 position)
         {
@@ -69,8 +86,7 @@ namespace Hook
             }
             else if (!_secondShot)
             {
-                _rope.EndPoint.SetParent(null);
-                
+                Disconnect(_rope.EndPoint);
                 Shoot(dir, _rope.EndPoint);
                 _secondShot = true;
             }
@@ -85,29 +101,34 @@ namespace Hook
         private IEnumerator ShootTip(Vector2 dir, RopeTip ropeTip)
         {
             var normDir = dir.normalized;
-            var startPosition = ropeTip.position;
 
             bool targetReached = false;
             bool connected = false;
             Vector2 connectionPoint = Vector2.zero;
-            float lastTime = Time.time;
+            float maxDist = _lengthToDisconnect - _collisionRadius * 2;
+            float movedDistance = 0;
             while (!targetReached)
             {
-                float deltaTime = Time.time - lastTime;
-                var deltaDist = deltaTime * _shootSpeed;
+                float deltaDist = Time.deltaTime * _shootSpeed;
+                float maxMoveDist = maxDist - movedDistance;
                 
-                targetReached = CheckTargetReach(
-                    startPosition,
+                // update stop condition
+                targetReached = deltaDist > maxMoveDist;
+                
+                // clamp move distance
+                deltaDist = Mathf.Min(maxMoveDist, deltaDist);
+                
+                connected = CheckConnection(
                     ropeTip.position,
                     normDir,
                     deltaDist,
-                    out connected,
                     out connectionPoint);
 
-                if (!targetReached)
-                {
-                    MoveRopeTip(ropeTip, normDir, _shootSpeed, deltaTime);
-                }
+                if (connected)
+                    targetReached = true;
+
+                MoveRopeTip(ropeTip, deltaDist, normDir);
+                movedDistance += deltaDist;
 
                 yield return null;
             }
@@ -126,7 +147,7 @@ namespace Hook
             else
             {
                 ropeTip.Weight = 0.1f;
-                yield return KeepMovingWithDrag(ropeTip, normDir);
+//                yield return KeepMovingWithDrag(ropeTip, normDir);
             }
 
             if (BothTipsShot)
@@ -145,24 +166,27 @@ namespace Hook
             OnTipConnected?.Invoke();
         }
 
-        private Vector2 MoveRopeTip(RopeTip ropeTip, Vector2 normDir, float speed, float deltaTime)
+        private void Disconnect(RopeTip tip)
+        {
+            tip.SetParent(null);
+        }
+
+        private static void MoveRopeTip(RopeTip ropeTip, float deltaDist, Vector2 normDir)
         {
             var currentPos = ropeTip.position;
-            var movement = deltaTime * speed * normDir;
+            var movement = deltaDist * normDir;
             var newPos = currentPos + movement;
             ropeTip.position = newPos;
-            return newPos;
         }
 
         private IEnumerator KeepMovingWithDrag(RopeTip ropeTip, Vector2 normDir)
         {
             float speed = _shootSpeed;
 
-            float lastTime = Time.time;
             while (speed > 0)
             {
-                float deltaTime = Time.time - lastTime;
-                MoveRopeTip(ropeTip, normDir, speed, deltaTime);
+                var deltaDist = Time.deltaTime * speed;
+                MoveRopeTip(ropeTip, deltaDist, normDir);
                 speed -= _drag;
                 yield return null;
             }
@@ -175,7 +199,7 @@ namespace Hook
             SecondConnected.OnStartRetracting();
             
             float length = _rope.Length;
-            while (_rope.CurrentTension < _tensionToJoin)
+            while (_rope.Tension < _tensionToJoin)
             {
                 length -= _retractSpeed;
                 _rope.Length = length;
@@ -218,12 +242,10 @@ namespace Hook
             Destroy(_rope.EndPoint.gameObject);
         }
 
-        private bool CheckTargetReach(
-            Vector2 startPosition,
+        private bool CheckConnection(
             Vector2 tipPosition,
             Vector2 dir,
             float moveDistance,
-            out bool connected,
             out Vector2 connectionPoint)
         {
             var hits = Physics2D.CircleCastNonAlloc(
@@ -236,22 +258,15 @@ namespace Hook
             
             connectionPoint = Vector2.zero;
 
-            bool targetReached = false;
+            bool connected = false;
             if (hits > 0)
             {
                 connected = true;
                 var hit = _raycastsBuffer[0];
                 connectionPoint = hit.point;
-                targetReached = true;
-            }
-            else
-            {
-                connected = false;
-                float traveledDistance = Vector2.Distance(startPosition, tipPosition);
-                targetReached = traveledDistance > _minShootLength;
             }
 
-            return targetReached;
+            return connected;
         }
     }
 }

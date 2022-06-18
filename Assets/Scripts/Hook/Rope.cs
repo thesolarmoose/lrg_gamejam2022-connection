@@ -24,7 +24,7 @@ namespace Hook
         private List<RopeSegment> _ropeSegments = new List<RopeSegment>();
         private bool _initialized;
 
-        private float _currentTension;
+        private float _tension;
 
         public float Length
         {
@@ -32,8 +32,10 @@ namespace Hook
             set => _ropeSegLen = value / _segmentLength;
         }
 
+        public float DistanceBetweenTips => Vector2.Distance(_startPoint.position, _endPoint.position);
+
         [NaughtyAttributes.ShowNativeProperty]
-        public float CurrentTension => _currentTension;
+        public float Tension => _tension;
 
         public RopeTip StartPoint
         {
@@ -148,7 +150,7 @@ namespace Hook
                 }
             }
 
-            _currentTension = totalError / _segmentLength;
+            _tension = totalError / _segmentLength;
         }
 
         private void DrawRope()
