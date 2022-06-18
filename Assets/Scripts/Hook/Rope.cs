@@ -49,6 +49,12 @@ namespace Hook
             set => _endPoint = value;
         }
 
+        public int ConstraintsIters
+        {
+            get => _constraintsIters;
+            set => _constraintsIters = value;
+        }
+
         private void Start()
         {
             Initialize(_startPoint.position);

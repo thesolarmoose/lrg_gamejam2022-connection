@@ -43,6 +43,11 @@ namespace Hook
         private bool BothTipsShot => _firstShot && _secondShot;
         private bool BothTipsConnected => _connectedTips.Count == 2;
 
+        private bool BothTipsWantRopeAlive =>
+            BothTipsConnected
+            && _connectedTips[0].Hooked.ShouldKeepRopeAlive
+            && _connectedTips[1].Hooked.ShouldKeepRopeAlive;
+
         private Connection FirstConnection => _connectedTips[0];
         private Connection SecondConnection => _connectedTips[1];
         private Hookable FirstConnected => _connectedTips[0].Hooked;
@@ -152,7 +157,16 @@ namespace Hook
 
             if (BothTipsShot)
             {
-                yield return DisappearRope();
+                if (BothTipsWantRopeAlive)
+                {
+                    // destroy for optimization
+                    Destroy(_rope);
+                    Destroy(this);
+                }
+                else
+                {
+                    yield return DisappearRope();
+                }
             }
         }
 

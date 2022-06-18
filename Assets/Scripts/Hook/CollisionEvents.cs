@@ -8,9 +8,9 @@ using Utils;
 namespace Hook
 {
     [CreateAssetMenu(fileName = "ConnectionsEvents", menuName = "Connections/ConnectionsEvents", order = 0)]
-    public class ConnectionsEvents : ScriptableObjectSingleton<ConnectionsEvents>
+    public class CollisionEvents : ScriptableObjectSingleton<CollisionEvents>
     {
-        [SerializeField] private List<ConnectionEvent> _events;
+        [SerializeField] private List<CollisionEvent> _events;
 
         public void NotifyCollision(Collision collision)
         {
@@ -22,7 +22,7 @@ namespace Hook
     }
 
     [Serializable]
-    public class ConnectionEvent
+    public class CollisionEvent
     {
         [SerializeField] private string _description;
         [SerializeReference, SubclassSelector] private IConnectionPredicate _firstConnectionCondition;
