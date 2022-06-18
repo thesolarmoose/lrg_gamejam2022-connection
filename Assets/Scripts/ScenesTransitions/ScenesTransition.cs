@@ -21,6 +21,12 @@ namespace ScenesTransitions
             await AwaitCinematic(_fadeOutCinematicPrefab);
         }
 
+        public void ResetCurrentScene()
+        {
+            var current = SceneManager.GetActiveScene();
+            ChangeScene(current.name);
+        }
+
         private async Task AwaitCinematic(PlayableDirector directorPrefab)
         {
             var fadeCinematic = Instantiate(directorPrefab);

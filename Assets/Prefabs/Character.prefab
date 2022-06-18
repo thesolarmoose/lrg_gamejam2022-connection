@@ -476,7 +476,19 @@ MonoBehaviour:
         m_CallState: 2
   eventHealed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
+        m_TargetAssemblyTypeName: Audio.AudioReferences, com.thesolarmoose.gunnect
+        m_MethodName: DropAudio
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 457b8b213d95efd4586c360e973c0a84, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   eventDied:
     m_PersistentCalls:
       m_Calls:
@@ -484,6 +496,30 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
+        m_TargetAssemblyTypeName: Audio.AudioReferences, com.thesolarmoose.gunnect
+        m_MethodName: DropAudio
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 457b8b213d95efd4586c360e973c0a84, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: a56551802c97f51419a953ebd373c72f, type: 2}
+        m_TargetAssemblyTypeName: ScenesTransitions.ScenesTransition, com.thesolarmoose.gunnect
+        m_MethodName: ResetCurrentScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
