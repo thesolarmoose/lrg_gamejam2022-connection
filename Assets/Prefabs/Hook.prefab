@@ -270,9 +270,9 @@ MonoBehaviour:
   _rope: {fileID: 9202149046650302234}
   _lineRenderer: {fileID: 9202149046650302235}
   _retractionController:
-    _retractionMaxSpeed: 7
-    _retractionInitialSpeed: 0
-    _retractionAcceleration: 0.5
+    _retractionMaxSpeed: 10000
+    _retractionInitialSpeed: 5
+    _retractionAcceleration: 1000
     _hookablesMask:
       serializedVersion: 2
       m_Bits: 64

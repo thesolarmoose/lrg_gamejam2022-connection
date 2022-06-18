@@ -27,23 +27,31 @@ namespace Hook
             var secondCollider = secondHooked.Collider;
             bool firstCanMove = firstHooked.IsMovable;
             bool secondCanMove = secondHooked.IsMovable;
+            
+            Vector2 collisionPoint = Vector2.zero;
+            float speed = _retractionInitialSpeed;
 
             bool anyCanMove = firstCanMove || secondCanMove;
-            
             if (anyCanMove)
             {
-                float speed = _retractionInitialSpeed;
                 bool bothCanMove = firstCanMove && secondCanMove;
                 Vector2 firstInitialPosition = firstTransform.position;
                 Vector2 secondInitialPosition = secondTransform.position;
-                var moveDistance = ComputeMoveDistance(firstCollider, secondCollider, firstDir, bothCanMove);
+                var moveDistance = ComputeMoveDistance(
+                    firstCollider,
+                    secondCollider,
+                    firstDir,
+                    bothCanMove,
+                    out collisionPoint);
 
                 float distanceMoved = 0;
             
                 while (distanceMoved < moveDistance)
                 {
-                    distanceMoved = Mathf.Min(moveDistance + Mathf.Epsilon, distanceMoved + speed);
-                    speed = Mathf.Min(_retractionMaxSpeed, speed + _retractionAcceleration);
+                    distanceMoved += speed * Time.deltaTime;
+                    distanceMoved = Mathf.Min(moveDistance + Mathf.Epsilon, distanceMoved);
+                    speed += _retractionAcceleration * Time.deltaTime;
+                    speed = Mathf.Min(_retractionMaxSpeed, speed);
 
                     if (firstCanMove)
                     {
@@ -69,6 +77,8 @@ namespace Hook
 
             if (bothExist)
             {
+                var collision = new Collision(first, second, collisionPoint, speed);
+                ConnectionsEvents.Instance.NotifyCollision(collision);
                 firstHooked.OnCollided(secondHooked);
                 secondHooked.OnCollided(firstHooked);
             }
@@ -78,7 +88,8 @@ namespace Hook
             Collider2D firstCollider,
             Collider2D secondCollider,
             Vector2 dir,
-            bool bothMove)
+            bool bothMove,
+            out Vector2 collisionPoint)
         {
             var filter = new ContactFilter2D
             {
@@ -90,10 +101,12 @@ namespace Hook
             {
                 var distance = hit.distance;
                 float moveDistance = bothMove ? distance * 0.5f : distance;
+                collisionPoint = hit.point;
                 return moveDistance;
             }
 
             Debug.LogWarning("did not find other collider");
+            collisionPoint = Vector2.zero;
             return 0;
         }
 

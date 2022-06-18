@@ -191,8 +191,8 @@ namespace Hook
             {
                 yield return _retractionController.Retract(FirstConnection, SecondConnection);
             }
-            
-            OnFinishedRetracting?.Invoke();
+
+            ;OnFinishedRetracting?.Invoke();
         }
 
         private IEnumerator DisappearRope()

@@ -72,8 +72,8 @@ BoxCollider2D:
   m_Offset: {x: -0.004399359, y: 0.18036878}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.125}
-    oldSize: {x: 1, y: 2}
+    pivot: {x: 0.5, y: 0.21875}
+    oldSize: {x: 1.25, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -276,6 +276,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _reference: {fileID: 11400000, guid: 2459df690b78b6b4c86e4f3c56ed2576, type: 2}
   _audioSource: {fileID: 8933487246040666277}
+--- !u!114 &9216543937160413630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8264362517606384301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ebd92e252a52149b011823927b90f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _list:
+  - {fileID: 11400000, guid: 58cdd6b1a8218dc47973fdc46c36f977, type: 2}
+  - {fileID: 11400000, guid: ee0bfd8fc73256748a064ce67e434eab, type: 2}
 --- !u!1001 &845740627180946975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -413,6 +428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f16bbb2de3924c48ab8e6ff6cb254c8, type: 3}
+--- !u!1 &8264362517606384301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8722422937657263282, guid: 4f16bbb2de3924c48ab8e6ff6cb254c8, type: 3}
+  m_PrefabInstance: {fileID: 845740627180946975}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8264362517606384300 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8722422937657263283, guid: 4f16bbb2de3924c48ab8e6ff6cb254c8, type: 3}

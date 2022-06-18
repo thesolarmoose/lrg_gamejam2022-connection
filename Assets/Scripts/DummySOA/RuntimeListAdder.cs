@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DummySOA
 {
     public class RuntimeListAdder : MonoBehaviour
     {
-        [SerializeField] private RuntimeGameObjectsList _list;
+        [SerializeField] private List<RuntimeGameObjectsList> _list;
 
         private void Start()
         {
@@ -23,17 +24,23 @@ namespace DummySOA
 
         private void Add()
         {
-            if (!_list.Contains(gameObject))
+            foreach (var list in _list)
             {
-                _list.Add(gameObject);
+                if (!list.Contains(gameObject))
+                {
+                    list.Add(gameObject);
+                }
             }
         }
 
         private void Remove()
         {
-            if (_list.Contains(gameObject))
+            foreach (var list in _list)
             {
-                _list.Remove(gameObject);
+                if (list.Contains(gameObject))
+                {
+                    list.Remove(gameObject);
+                }
             }
         }
     }

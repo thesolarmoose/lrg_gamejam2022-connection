@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c7ad8f4e6741348de2b22ef98c9b47, type: 3}
+  m_Name: ConnectionsEvents
+  m_EditorClassIdentifier: 
+  _events:
+  - _description: enemy vs enemy
+    _firstConnectionCondition:
+      id: 0
+    _secondConnectionCondition:
+      id: 1
+    _firstConnectionResponse:
+      id: 2
+    _secondConnectionResponse:
+      id: 2
+    _collisionResponse:
+      id: 3
+  - _description: enemy vs boulder
+    _firstConnectionCondition:
+      id: 0
+    _secondConnectionCondition:
+      id: 4
+    _firstConnectionResponse:
+      id: 2
+    _secondConnectionResponse:
+      id: 2
+    _collisionResponse:
+      id: 5
+  - _description: wall vs movable
+    _firstConnectionCondition:
+      id: 6
+    _secondConnectionCondition:
+      id: 7
+    _firstConnectionResponse:
+      id: 2
+    _secondConnectionResponse:
+      id: 2
+    _collisionResponse:
+      id: 8
+  - _description: wall vs movable
+    _firstConnectionCondition:
+      id: 9
+    _secondConnectionCondition:
+      id: 10
+    _firstConnectionResponse:
+      id: 2
+    _secondConnectionResponse:
+      id: 2
+    _collisionResponse:
+      id: 11
+  references:
+    version: 1
+    00000000:
+      type: {class: HookableBelongsToList, ns: Hook.ConnectionsPredicates, asm: com.thesolarmoose.gunnect}
+      data:
+        _list: {fileID: 11400000, guid: 3154334bbba375947a93ba0aec933d35, type: 2}
+    00000001:
+      type: {class: HookableBelongsToList, ns: Hook.ConnectionsPredicates, asm: com.thesolarmoose.gunnect}
+      data:
+        _list: {fileID: 11400000, guid: 3154334bbba375947a93ba0aec933d35, type: 2}
+    00000002:
+      type: {class: , ns: , asm: }
+    00000003:
+      type: {class: UnityEventCollisionResponse, ns: Hook.ConnectionsResponses, asm: com.thesolarmoose.gunnect}
+      data:
+        _event:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
+              m_TargetAssemblyTypeName: Audio.AudioReferences, com.thesolarmoose.gunnect
+              m_MethodName: DropAudio
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 11400000, guid: 0be806baaff95b942a316a3bf2a1389c, type: 2}
+                m_ObjectArgumentAssemblyTypeName: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000004:
+      type: {class: HookableBelongsToList, ns: Hook.ConnectionsPredicates, asm: com.thesolarmoose.gunnect}
+      data:
+        _list: {fileID: 11400000, guid: 58cdd6b1a8218dc47973fdc46c36f977, type: 2}
+    00000005:
+      type: {class: UnityEventCollisionResponse, ns: Hook.ConnectionsResponses, asm: com.thesolarmoose.gunnect}
+      data:
+        _event:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
+              m_TargetAssemblyTypeName: Audio.AudioReferences, com.thesolarmoose.gunnect
+              m_MethodName: DropAudio
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 11400000, guid: cf1c1ee933de8b245a2448149e0b104c, type: 2}
+                m_ObjectArgumentAssemblyTypeName: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000006:
+      type: {class: HookableBelongsToList, ns: Hook.ConnectionsPredicates, asm: com.thesolarmoose.gunnect}
+      data:
+        _list: {fileID: 11400000, guid: 78eba3b0f45971a4994e7e2c7902f535, type: 2}
+    00000007:
+      type: {class: HookableBelongsToList, ns: Hook.ConnectionsPredicates, asm: com.thesolarmoose.gunnect}
+      data:
+        _list: {fileID: 11400000, guid: ee0bfd8fc73256748a064ce67e434eab, type: 2}
+    00000008:
+      type: {class: UnityEventCollisionResponse, ns: Hook.ConnectionsResponses, asm: com.thesolarmoose.gunnect}
+      data:
+        _event:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
+              m_TargetAssemblyTypeName: Audio.AudioReferences, com.thesolarmoose.gunnect
+              m_MethodName: DropAudio
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 11400000, guid: 7d13f475dd69a3a44a315fa1bdd34516, type: 2}
+                m_ObjectArgumentAssemblyTypeName: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    00000009:
+      type: {class: HookableBelongsToList, ns: Hook.ConnectionsPredicates, asm: com.thesolarmoose.gunnect}
+      data:
+        _list: {fileID: 11400000, guid: 58cdd6b1a8218dc47973fdc46c36f977, type: 2}
+    0000000A:
+      type: {class: HookableBelongsToList, ns: Hook.ConnectionsPredicates, asm: com.thesolarmoose.gunnect}
+      data:
+        _list: {fileID: 11400000, guid: 58cdd6b1a8218dc47973fdc46c36f977, type: 2}
+    0000000B:
+      type: {class: UnityEventCollisionResponse, ns: Hook.ConnectionsResponses, asm: com.thesolarmoose.gunnect}
+      data:
+        _event:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
+              m_TargetAssemblyTypeName: Audio.AudioReferences, com.thesolarmoose.gunnect
+              m_MethodName: DropAudio
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 11400000, guid: 7d13f475dd69a3a44a315fa1bdd34516, type: 2}
+                m_ObjectArgumentAssemblyTypeName: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2

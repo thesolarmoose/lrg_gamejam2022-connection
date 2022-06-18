@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8722422937657263283}
   - component: {fileID: 8722422937657263285}
   - component: {fileID: 8722422937657263284}
+  - component: {fileID: -456373119473199333}
   m_Layer: 6
   m_Name: WallHookable
   m_TagString: Untagged
@@ -95,6 +96,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-456373119473199333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722422937657263282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ebd92e252a52149b011823927b90f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _list:
+  - {fileID: 11400000, guid: 78eba3b0f45971a4994e7e2c7902f535, type: 2}
 --- !u!1 &9080276483067582627
 GameObject:
   m_ObjectHideFlags: 0
