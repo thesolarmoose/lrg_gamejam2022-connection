@@ -46,7 +46,7 @@ MonoBehaviour:
       id: 2
     _collisionResponse:
       id: 8
-  - _description: wall vs movable
+  - _description: boulder vs boulder
     _firstConnectionCondition:
       id: 9
     _secondConnectionCondition:
@@ -80,7 +80,7 @@ MonoBehaviour:
               m_MethodName: DropAudio
               m_Mode: 2
               m_Arguments:
-                m_ObjectArgument: {fileID: 11400000, guid: 0be806baaff95b942a316a3bf2a1389c, type: 2}
+                m_ObjectArgument: {fileID: 11400000, guid: cf1c1ee933de8b245a2448149e0b104c, type: 2}
                 m_ObjectArgumentAssemblyTypeName: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
                 m_IntArgument: 0
                 m_FloatArgument: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
               m_MethodName: DropAudio
               m_Mode: 2
               m_Arguments:
-                m_ObjectArgument: {fileID: 11400000, guid: cf1c1ee933de8b245a2448149e0b104c, type: 2}
+                m_ObjectArgument: {fileID: 11400000, guid: 0be806baaff95b942a316a3bf2a1389c, type: 2}
                 m_ObjectArgumentAssemblyTypeName: Audio.SoundReferenceEnum, com.thesolarmoose.gunnect
                 m_IntArgument: 0
                 m_FloatArgument: 0
