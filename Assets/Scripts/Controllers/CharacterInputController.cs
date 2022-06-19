@@ -45,6 +45,7 @@ namespace Controllers
             _moveAction.action?.Disable();
             _pointAction.action?.Disable();
             _lookAction.action?.Disable();
+            _shootAction.action.performed -= OnShoot;
             _shootAction.action?.Disable();
         }
 

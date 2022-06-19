@@ -21,12 +21,14 @@ namespace EnergySourcesConnections
 
         public void OnEnergyConsumersConnected(EnergyConsumer first, EnergyConsumer second)
         {
-            AddConnectionToGroups(first, second);
-            CheckVictoryCondition();
+            AddConnectionToGroups(first, second, out bool changed);
+            if (changed)
+                CheckVictoryCondition();
         }
 
-        private void AddConnectionToGroups(EnergyConsumer first, EnergyConsumer second)
+        private void AddConnectionToGroups(EnergyConsumer first, EnergyConsumer second, out bool changed)
         {
+            changed = false;
             bool haveEnergy = first == _energyProvider || second == _energyProvider;
             bool firstHaveGroup = TryGetGroup(first, out var firstGroup);
             bool secondHaveGroup = TryGetGroup(second, out var secondGroup);
@@ -36,6 +38,7 @@ namespace EnergySourcesConnections
             {
                 firstGroup.Merge(secondGroup);
                 _groups.Remove(secondGroup);
+                changed = true;
             }
             else
             {
@@ -55,6 +58,7 @@ namespace EnergySourcesConnections
                     var newGroup = new EnergyConsumersGroup(haveEnergy, groupList);
                     _groups.Add(newGroup);
                 }
+                changed = true;
             }
         }
 
@@ -143,7 +147,11 @@ namespace EnergySourcesConnections
         public void AddConsumer(EnergyConsumer consumer)
         {
             if (!Contains(consumer))
+            {
                 _connectedConsumers.Add(consumer);
+                if (_withEnergy)
+                    consumer.OnEnergyReceived();
+            }
         }
 
         public void Merge(EnergyConsumersGroup other)
