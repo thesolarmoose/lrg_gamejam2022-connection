@@ -10440,7 +10440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shoot this lamp
+  m_text: Shoot this light pole
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 504d1964a519cfd478589d64572fcd1f, type: 2}
   m_sharedMaterial: {fileID: -3640643261974961923, guid: 504d1964a519cfd478589d64572fcd1f, type: 2}
