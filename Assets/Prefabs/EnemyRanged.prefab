@@ -800,6 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMovable: 1
+  _shouldKeepRopeAlive: 0
   _transform: {fileID: 5526327214562517469}
   _collider: {fileID: 5526327214005886145}
   onConnected:
@@ -819,7 +820,19 @@ MonoBehaviour:
         m_CallState: 2
   onStartRetracting:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2457006263405201591}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onCollided:
     m_PersistentCalls:
       m_Calls:
@@ -835,6 +848,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _connectedToOtherEvent:
+    _connectedCondition:
+      id: 0
+    _response:
+      id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!61 &5526327214005886145
 BoxCollider2D:
   m_ObjectHideFlags: 0
