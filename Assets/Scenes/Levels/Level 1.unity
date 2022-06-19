@@ -590,7 +590,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 1, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -6686,7 +6686,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: -344316306050438890, guid: 0007778a0e71cf54fb87f4cd8cbfe226, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 4236245766646314946, guid: 0007778a0e71cf54fb87f4cd8cbfe226, type: 3}
+    m_Data: {fileID: 1208437343575169551, guid: 0007778a0e71cf54fb87f4cd8cbfe226, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 8657225639158051063, guid: 0007778a0e71cf54fb87f4cd8cbfe226, type: 3}
   - m_RefCount: 1
@@ -7179,7 +7179,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
