@@ -72,7 +72,6 @@ MonoBehaviour:
       type: {class: RandomAudioProvider, ns: Audio, asm: com.thesolarmoose.gunnect}
       data:
         _audioClips:
-        - {fileID: 8300000, guid: 5db02e11e36c99943b4feb1b78f98897, type: 3}
         - {fileID: 8300000, guid: ae73f26e70457be488edebe9649dcc30, type: 3}
     00000003:
       type: {class: SingleAudioProvider, ns: Audio, asm: com.thesolarmoose.gunnect}
