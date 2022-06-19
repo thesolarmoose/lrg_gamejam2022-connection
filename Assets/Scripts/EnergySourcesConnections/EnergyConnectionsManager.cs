@@ -11,12 +11,21 @@ namespace EnergySourcesConnections
         [SerializeField] private UnityEvent _onAllConnected;
         [SerializeField] private EnergyConsumer _energyProvider;
         [SerializeField] private EnergyConsumer _target;
+
+        [SerializeField] List<EnergyConsumer> _allConsumers;
         
         private readonly List<EnergyConsumersGroup> _groups = new List<EnergyConsumersGroup>();
 
         private void Awake()
         {
             EnergyConnectionsReference.Instance.Manager = this;
+            InitializeConsumers();
+        }
+
+        private void InitializeConsumers()
+        {
+            var consumers = GetComponentsInChildren<EnergyConsumer>();
+            _allConsumers = new List<EnergyConsumer>(consumers);
         }
 
         public void OnEnergyConsumersConnected(EnergyConsumer first, EnergyConsumer second)
@@ -64,14 +73,22 @@ namespace EnergySourcesConnections
 
         private void CheckVictoryCondition()
         {
-            if (TryGetGroup(_target, out var targetGroup))
+            bool oneGroupOnly = _groups.Count == 1;
+            bool allConnected = _groups[0].Count == _allConsumers.Count;
+
+            if (oneGroupOnly && allConnected)
             {
-                if (targetGroup.WithEnergy)
-                {
-                    // you won :)
-                    _onAllConnected?.Invoke();
-                }
+                // you won :)
+                _onAllConnected?.Invoke();
             }
+//            if (TryGetGroup(_target, out var targetGroup))
+//            {
+//                if (targetGroup.WithEnergy)
+//                {
+//                    // you won :)
+//                    _onAllConnected?.Invoke();
+//                }
+//            }
         }
 
         private bool TryGetGroup(EnergyConsumer consumer, out EnergyConsumersGroup group)
@@ -107,6 +124,8 @@ namespace EnergySourcesConnections
         }
 
         public List<EnergyConsumer> ConnectedConsumers => _connectedConsumers;
+
+        public int Count => _connectedConsumers.Count;
 
         public EnergyConsumersGroup(bool withEnergy, List<EnergyConsumer> connectedConsumers)
         {

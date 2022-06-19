@@ -56,7 +56,7 @@ MonoBehaviour:
     m_Bits: 128
   _whoToIgnore:
     serializedVersion: 2
-    m_Bits: 324
+    m_Bits: 836
   _destroyAnimation: {fileID: -7018782230710759691}
 --- !u!114 &-7018782230710759691
 MonoBehaviour:

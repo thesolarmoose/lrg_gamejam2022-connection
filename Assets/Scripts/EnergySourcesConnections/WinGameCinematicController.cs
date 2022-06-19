@@ -4,6 +4,7 @@ using AI;
 using AI.States;
 using Character;
 using Controllers;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Playables;
 using Utils;
@@ -27,7 +28,7 @@ namespace EnergySourcesConnections
             var coroutine = CoroutineUtils.CoroutineSequence(new List<IEnumerator>
             {
                 CoroutineUtils.ActionCoroutine(DisableAllControllers),
-                MoveCameraToTarget(),
+//                MoveCameraToTarget(),
                 CoroutineUtils.WaitTimeCoroutine(_waitTimeAfterCameraMove),
                 PlayCinematic(),
                 CoroutineUtils.ActionCoroutine(() =>
@@ -44,6 +45,7 @@ namespace EnergySourcesConnections
             components.AddRange(FindObjectsOfType<AiBehaviour>());
             components.AddRange(FindObjectsOfType<CharacterInputController>());
             components.AddRange(FindObjectsOfType<CameraFollow>());
+            components.AddRange(FindObjectsOfType<EnemySpawner>());
             components.ForEach(component => component.enabled = false);
             
             var movements = FindObjectsOfType<CharacterMovement>();
