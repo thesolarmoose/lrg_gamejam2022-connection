@@ -127,7 +127,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1.29
+  bundleVersion: 0.2.0
   preloadedAssets:
   - {fileID: 11400000, guid: 2a139319d742d53458c9f90b88645631, type: 2}
   - {fileID: 11400000, guid: 10533a09168a96a42a67ddc5f166e7ba, type: 2}
@@ -135,6 +135,7 @@ PlayerSettings:
   - {fileID: 11400000, guid: 8a287626f7888e04284829e8e7b1b5ac, type: 2}
   - {fileID: 11400000, guid: 10cf0a79b3f201f44a361d74e18f519c, type: 2}
   - {fileID: 11400000, guid: a56551802c97f51419a953ebd373c72f, type: 2}
+  - {fileID: 11400000, guid: 9ca2b2f908f07bd4098f2532f8b97ee9, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -154,7 +155,7 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: com.TheSolarMoose.Gunnect
   buildNumber:
-    Standalone: 0.1.29
+    Standalone: 0.2.0
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
@@ -543,7 +544,7 @@ PlayerSettings:
   blurSplashScreenBackground: 1
   spritePackerPolicy: 
   webGLMemorySize: 32
-  webGLExceptionSupport: 1
+  webGLExceptionSupport: 3
   webGLNameFilesAsHashes: 0
   webGLDataCaching: 1
   webGLDebugSymbols: 0
@@ -552,7 +553,7 @@ PlayerSettings:
   webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 0
+  webGLCompressionFormat: 2
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0

@@ -15,9 +15,9 @@ MonoBehaviour:
   GameVersion:
     Major: 0
     Minor: 2
-    Build: 1
+    Build: 0
   extraVersions: []
-  GitHash: 855ac50
-  BuildTimestamp: 2022 June 19 - 12:32
+  GitHash: 3f410f2
+  BuildTimestamp: 2022 September 07 - 13:39
   enableAutoIncrement: 0
   enableGitHash: 0

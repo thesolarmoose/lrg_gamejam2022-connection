@@ -1,14 +1,13 @@
-name: (Standalone | Release) Build and deploy standalone release on Itch.io and Telegram
+name: (WebGL | Release) Build and deploy WebGL release on Itch.io
 
 on:
   workflow_dispatch:
 
 jobs:
   run:
-    uses: mnicolas94/UnityCICDWorkflows/.github/workflows/BnD_standalone.yml@v1-pre-13
+    uses: mnicolas94/UnityCICDWorkflows/.github/workflows/BnD_webgl.yml@v1-pre-13
     with:
       development_build: false
-      cache_tgsession: false
     secrets:
       TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
       TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
