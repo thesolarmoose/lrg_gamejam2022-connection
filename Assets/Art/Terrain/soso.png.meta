@@ -102,7 +102,7 @@ TextureImporter:
       213: -1004713600131951312
     second: soso_35
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -119,10 +119,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -161,6 +163,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -172,6 +176,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -184,6 +189,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -196,6 +202,33 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -904,9 +937,42 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      soso_0: -5123423305178621545
+      soso_1: 4236245766646314946
+      soso_10: 2744832568878014292
+      soso_11: 1772509294404139151
+      soso_12: -2618081518250492725
+      soso_13: -3709863828806845921
+      soso_14: 1208437343575169551
+      soso_15: -7784998340302651156
+      soso_16: 8307891514957419001
+      soso_17: 8170723671022642241
+      soso_18: 5585955165758999973
+      soso_19: 225613341916533666
+      soso_2: -684004668300781378
+      soso_20: -4521230927852488354
+      soso_21: 8061397540043694528
+      soso_22: 4057742646294516457
+      soso_23: 2528710906780593373
+      soso_24: -9187199251241991204
+      soso_25: 1842149573739284983
+      soso_26: 4626812572199461870
+      soso_27: 6581696262628286240
+      soso_28: 8657225639158051063
+      soso_29: 236206448870014516
+      soso_3: 7882750163068879140
+      soso_30: 910912329461234843
+      soso_31: 5182630842802301137
+      soso_32: 5105799033210394608
+      soso_33: -344316306050438890
+      soso_34: 5878640640365680089
+      soso_35: -1004713600131951312
+      soso_7: -7861989068728168755
+      soso_8: -9181931657984231893
+      soso_9: 8854479184694657655
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
