@@ -23,8 +23,6 @@ namespace AI
             enabled = false;
             _conditions.ParentBehaviourDisabled();
         }
-        
-        
     }
     
     [Serializable]

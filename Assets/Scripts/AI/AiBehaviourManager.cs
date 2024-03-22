@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AI.States
+namespace AI
 {
     public class AiBehaviourManager : MonoBehaviour
     {

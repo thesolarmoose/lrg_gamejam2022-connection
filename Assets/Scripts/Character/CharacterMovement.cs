@@ -6,6 +6,8 @@ namespace Character
     [RequireComponent(typeof(Rigidbody2D))]
     public class CharacterMovement : MonoBehaviour, IMover, ILooker
     {
+        [SerializeField] private Transform _rotateTransform;
+        
         [SerializeField] private List<BaseLooker> _lookers;
         
         [SerializeField] private float _speed;
@@ -46,10 +48,9 @@ namespace Character
         {
             CurrentLookDirection = lookDir;
             float sign = Mathf.Sign(lookDir.x);
-            var t = transform;
-            var scale = t.localScale;
+            var scale = _rotateTransform.localScale;
             scale.x = sign;
-            t.localScale = scale;
+            _rotateTransform.localScale = scale;
 
             foreach (var looker in _lookers)
             {
