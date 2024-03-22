@@ -24,15 +24,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319368643039996930}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3573678645139377141}
   - {fileID: 9163599359649799795}
   - {fileID: 7011855046225088147}
   m_Father: {fileID: 9202149046650302237}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &8537592196435175253
 AudioSource:
@@ -154,12 +155,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696111888911577318}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 963337751394097676}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3011431964513666278
 MonoBehaviour:
@@ -170,11 +172,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1696111888911577318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a572a1cd414033a489ccb35f57397d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8094960bb7f64d4295ef32b54847e992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _reference: {fileID: 11400000, guid: 1754bb0d992d3014593bdafc94800f39, type: 2}
   _audioSource: {fileID: 8537592196435175253}
+  _audioReferences: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
 --- !u!1 &1919549263661142022
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,12 +202,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919549263661142022}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 963337751394097676}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &706782065695517906
 MonoBehaviour:
@@ -215,11 +219,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1919549263661142022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a572a1cd414033a489ccb35f57397d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8094960bb7f64d4295ef32b54847e992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _reference: {fileID: 11400000, guid: 491100406980b104bbc25a514d62fd96, type: 2}
   _audioSource: {fileID: 8537592196435175253}
+  _audioReferences: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
 --- !u!1 &5433498447117251586
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,12 +249,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5433498447117251586}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 963337751394097676}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7495995897687303915
 MonoBehaviour:
@@ -260,11 +266,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5433498447117251586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a572a1cd414033a489ccb35f57397d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8094960bb7f64d4295ef32b54847e992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _reference: {fileID: 11400000, guid: ae8bda207df3bb34eab7a907b5e261cf, type: 2}
   _audioSource: {fileID: 8537592196435175253}
+  _audioReferences: {fileID: 11400000, guid: 8117164a37a7d7848a7477309bb61624, type: 2}
 --- !u!1 &9202149046650302232
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,15 +298,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9202149046650302232}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9202149048139481647}
   - {fileID: 9202149048510212366}
   - {fileID: 963337751394097676}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5282173590820340935
 MonoBehaviour:
@@ -421,6 +429,7 @@ MonoBehaviour:
   _constraintsIters: 100
 --- !u!120 &9202149046650302235
 LineRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -508,16 +517,20 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
+  m_MaskInteraction: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+  m_ApplyActiveColorSpace: 0
 --- !u!1 &9202149048139481644
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,12 +555,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9202149048139481644}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.15, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9202149046650302237}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1050146548812735351
 MonoBehaviour:
@@ -586,12 +600,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9202149048510212367}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.73, y: 3.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9202149046650302237}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2228861009769984368
 MonoBehaviour:
