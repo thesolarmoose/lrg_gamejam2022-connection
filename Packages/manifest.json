@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "com.dbrizov.naughtyattributes": "2.1.4",
+    "com.brunomikoski.animationsequencer": "0.5.4",
+    "com.codewriter.triinspector": "1.13.2",
     "com.facticus.asyncutils": "https://github.com/mnicolas94/unity-async-utils.git",
     "com.facticus.audio": "https://github.com/mnicolas94/facticus-audio.git",
     "com.facticus.deploy": "https://github.com/mnicolas94/facticus-deploy.git#feat/overrides_with_presets",
@@ -38,7 +39,7 @@
     "com.unity.ugui": "1.0.0",
     "com.yasirkula.assetusagedetector": "2.5.1",
     "com.yasirkula.ingamedebugconsole": "1.6.7",
-    "net.tnrd.serializableinterface": "1.12.1",
+    "net.tnrd.serializableinterface": "2.2.1",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -76,15 +77,17 @@
       "name": "OpenUPM",
       "url": "https://package.openupm.com",
       "scopes": [
+        "com.brunomikoski.animationsequencer",
+        "com.codewriter.triinspector",
         "com.dbrizov",
         "com.facticus.utils",
         "com.mackysoft.serializereference-extensions",
         "com.needle",
         "com.openupm",
+        "com.solidalloy.util",
         "com.unity-atoms.unity-atoms-base-atoms",
         "com.unity-atoms.unity-atoms-core",
         "com.unity-atoms.unity-atoms-ui",
-        "com.solidalloy.util",
         "com.yasirkula",
         "com.yasirkula.assetusagedetector",
         "net.tnrd.serializableinterface"

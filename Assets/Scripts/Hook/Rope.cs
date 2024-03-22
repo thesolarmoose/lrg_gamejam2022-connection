@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TriInspector;
 using UnityEngine;
 
 /*
@@ -34,7 +35,7 @@ namespace Hook
 
         public float DistanceBetweenTips => Vector2.Distance(_startPoint.position, _endPoint.position);
 
-        [NaughtyAttributes.ShowNativeProperty]
+        [ShowInInspector]
         public float Tension => _tension;
 
         public RopeTip StartPoint

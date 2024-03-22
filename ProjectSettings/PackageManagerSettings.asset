@@ -30,15 +30,17 @@ MonoBehaviour:
     m_Name: OpenUPM
     m_Url: https://package.openupm.com
     m_Scopes:
+    - com.brunomikoski.animationsequencer
+    - com.codewriter.triinspector
     - com.dbrizov
     - com.facticus.utils
     - com.mackysoft.serializereference-extensions
     - com.needle
     - com.openupm
+    - com.solidalloy.util
     - com.unity-atoms.unity-atoms-base-atoms
     - com.unity-atoms.unity-atoms-core
     - com.unity-atoms.unity-atoms-ui
-    - com.solidalloy.util
     - com.yasirkula
     - com.yasirkula.assetusagedetector
     - net.tnrd.serializableinterface

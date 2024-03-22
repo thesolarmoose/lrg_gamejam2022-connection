@@ -1,5 +1,5 @@
 ﻿using System;
-using NaughtyAttributes;
+using TriInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,10 +16,10 @@ namespace Character
         
         private int _currentHealth;
 
-        [ShowNativeProperty]
+        [ShowInInspector]
         public bool Invulnerable { get; set; }
         
-        [ShowNativeProperty]
+        [ShowInInspector]
         public int CurrentHealth
         {
             get => _currentHealth;
@@ -32,7 +32,7 @@ namespace Character
 
         public int MaxHealth => _maxHealth;
 
-        [ShowNativeProperty]
+        [ShowInInspector]
         public bool IsDead => CurrentHealth <= 0;
         
         private void Awake()
